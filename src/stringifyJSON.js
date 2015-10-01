@@ -3,7 +3,7 @@
 
 // but you don't so you're going to write it from scratch:
 
-var stringifyJSON = function(input) {
+var stringifyJSON = function(obj) {
   function recursion(obj) {
     var allKeys = Object.keys(obj);
     if (allKeys[0] === undefined) {
@@ -59,19 +59,19 @@ var stringifyJSON = function(input) {
     return '[' + currentArray.join(',') + ']';
   }
 
-  if (typeof input === 'string') {
-    return '"' + input + '"';
-  } else if (typeof input === 'boolean' ||
-             typeof input === 'number'  ||
-                    input === null        ) {
-    return '' + input;
-  } else if (input === undefined || typeof input === 'function') {
+  if (typeof obj === 'string') {
+    return '"' + obj + '"';
+  } else if (typeof obj === 'boolean' ||
+             typeof obj === 'number'  ||
+                    obj === null        ) {
+    return '' + obj;
+  } else if (obj === undefined || typeof obj === 'function') {
     return undefined;
-  } else if ( typeof input === 'object') {
-    if (Array.isArray(input)) {
-      return arrays(input);
+  } else if ( typeof obj === 'object') {
+    if (Array.isArray(obj)) {
+      return arrays(obj);
     } else {
-    return recursion(input);
+    return recursion(obj);
     }
   }
 };
