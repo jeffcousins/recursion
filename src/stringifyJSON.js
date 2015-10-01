@@ -4,7 +4,7 @@
 // but you don't so you're going to write it from scratch:
 
 var stringifyJSON = function(obj) {
-  function recursion(obj) {
+  function objects(obj) {
     var allKeys = Object.keys(obj);
     if (allKeys[0] === undefined) {
       return '{}';
@@ -28,7 +28,7 @@ var stringifyJSON = function(obj) {
         if (Array.isArray(val)) {
           strVal += arrays(val);
         } else {
-          strVal += recursion(val);
+          strVal += objects(val);
         }
       }
       result.push(strKey + strVal);
@@ -49,7 +49,7 @@ var stringifyJSON = function(obj) {
         if (Array.isArray(arr[i])) {
           currentArray.push(arrays(arr[i]));
         } else {
-          currentArray.push(recursion(arr[i]));
+          currentArray.push(objects(arr[i]));
         }
       } else {
         currentArray.push(arr[i]);
@@ -71,7 +71,7 @@ var stringifyJSON = function(obj) {
     if (Array.isArray(obj)) {
       return arrays(obj);
     } else {
-    return recursion(obj);
+    return objects(obj);
     }
   }
 };
